@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="ChatApp.Client.Views.ChatsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:ChatApp.Client.ViewModels"
+    xmlns:models="clr-namespace:ChatApp.Client.Models"
+    xmlns:behaviors="clr-namespace:ChatApp.Client.Behaviors"
+    x:DataType="vm:ChatsViewModel"
+    Title="{Binding Title}">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <ActivityIndicator Grid.Row="0" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" Margin="0,8" />
+
+        <RefreshView Grid.Row="1" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy}">
+            <CollectionView ItemsSource="{Binding Conversations}" SelectionMode="None">
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="32">
+                        <Label Text="No chats yet" FontSize="18" HorizontalOptions="Center" />
+                        <Label Text="Start one from the Contacts tab" TextColor="{StaticResource Gray500}" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:ConversationModel">
+                        <Grid Padding="16,12" ColumnDefinitions="Auto,*,Auto">
+                            <Grid.Behaviors>
+                                <behaviors:NavigateBehavior Route="ChatPage" ParameterName="conversationId" Parameter="{Binding Id}" />
+                            </Grid.Behaviors>
+
+                            <Ellipse Grid.Column="0" Fill="{StaticResource Primary}" WidthRequest="48" HeightRequest="48" VerticalOptions="Center" />
+
+                            <VerticalStackLayout Grid.Column="1" Margin="12,0,0,0" VerticalOptions="Center">
+                                <Label Text="{Binding OtherParticipantsDisplay}" FontAttributes="Bold" />
+                                <Label Text="{Binding LastMessage.Text}" TextColor="{StaticResource Gray500}" LineBreakMode="TailTruncation" />
+                            </VerticalStackLayout>
+
+                            <Label Grid.Column="2" Text="{Binding UnreadCount}"
+                                   IsVisible="{Binding UnreadCount, Converter={StaticResource CountToBoolConverter}}"
+                                   BackgroundColor="{StaticResource Primary}" TextColor="White"
+                                   WidthRequest="24" HeightRequest="24" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                                   VerticalOptions="Center" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+</ContentPage>

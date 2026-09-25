@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="ChatApp.Client.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:ChatApp.Client.ViewModels"
+    x:DataType="vm:SettingsViewModel"
+    Title="{Binding Title}">
+
+    <VerticalStackLayout Padding="24" Spacing="16">
+
+        <Ellipse Fill="{StaticResource Primary}" WidthRequest="80" HeightRequest="80" HorizontalOptions="Center" />
+
+        <Label Text="{Binding CurrentUser.DisplayName}" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" />
+        <Label Text="{Binding CurrentUser.Username}" TextColor="{StaticResource Gray500}" HorizontalOptions="Center" />
+
+        <BoxView HeightRequest="1" BackgroundColor="{StaticResource Gray200}" Margin="0,16" />
+
+        <Button Text="Log Out" Command="{Binding LogoutCommand}" BackgroundColor="{StaticResource Gray600}" />
+
+    </VerticalStackLayout>
+</ContentPage>
