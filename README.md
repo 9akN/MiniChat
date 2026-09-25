@@ -5,7 +5,6 @@ messaging over SignalR.
 
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — full architecture and pattern write-up
 - [`docs/PATTERN_GUIDE.md`](docs/PATTERN_GUIDE.md) — pattern → file/line quick lookup
-- [`docs/MIGRATIONS.md`](docs/MIGRATIONS.md) — migration timeline, dependency graph, how to add a new one
 
 ## Features
 
