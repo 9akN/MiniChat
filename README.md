@@ -4,7 +4,6 @@ A WhatsApp-style chat app: a .NET MAUI client backed by an ASP.NET Core Web API 
 messaging over SignalR.
 
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — full architecture and pattern write-up
-- [`docs/PATTERN_GUIDE.md`](docs/PATTERN_GUIDE.md) — pattern → file/line quick lookup
 
 ## Features
 
